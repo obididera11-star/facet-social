@@ -1,1 +1,48 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Facet</title><style>body{margin:0;font-family:system-ui;background:#f0f2f5}header{position:sticky;top:0;background:#fff;padding:12px 16px;display:flex;justify-content:space-between;box-shadow:0 1px 3px #0002}.logo{font-weight:900;font-size:24px;color:#0064e0}.feed{max-width:600px;margin:12px auto;padding:0 8px}.story{display:flex;gap:10px;background:#fff;padding:12px;border-radius:12px;overflow:auto;margin-bottom:12px}.s{flex:0 0 60px;text-align:center;font-size:11px}.s b{width:60px;height:60px;border-radius:50%;background:linear-gradient(45deg,#0064e0,#00c6ff);display:flex;align-items:center;justify-content:center;color:#fff}.card{background:#fff;border-radius:12px;margin-bottom:12px;overflow:hidden}.top{padding:10px;font-weight:700}video,img{width:100%;display:block}.act{padding:10px;display:flex;gap:8px}button{border:0;padding:8px 14px;border-radius:20px;font-weight:700}.blue{background:#0064e0;color:#fff}</style></head><body><header><div class="logo">facet</div><div>Hi Didera</div></header><div class="feed"><div class="story"><div class="s"><b>+</b>Your story</div><div class="s"><b>AM</b>Aisha</div><div class="s"><b>TK</b>Tunde</div><div class="s"><b>SL</b>Sarah</div></div><div class="card"><div class="top">Aisha • Lagos</div><video autoplay muted loop playsinline src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video><div class="act"><button class="blue">Like</button><button>Share</button></div></div><div class="card"><div class="top">Reels • Trending</div><video autoplay muted loop playsinline src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"></video><div class="act"><button class="blue">Like</button></div></div></div></body></html>
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Facet - Real Social</title>
+<style>
+*{box-sizing:border-box;margin:0}body{font-family:-apple-system,system-ui;background:#f0f2f5;color:#050505}
+header{position:sticky;top:0;z-index:20;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:10px 14px;box-shadow:0 1px 2px #0002}
+.logo{font-weight:900;font-size:26px;color:#0064e0;letter-spacing:-1px}.logo span{color:#000}
+.feed{max-width:580px;margin:0 auto;padding:8px}
+.box{background:#fff;border-radius:12px;padding:12px;margin-bottom:10px;box-shadow:0 1px 2px #0001}
+.story-row{display:flex;gap:10px;overflow:auto;padding-bottom:4px}.s{flex:0 0 64px;text-align:center;font-size:11px}.s div{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#0064e0,#00c6ff);display:grid;place-items:center;color:#fff;font-weight:800;font-size:18px;border:3px solid #fff;box-shadow:0 0 0 3px #0064e0}
+.create{display:flex;gap:10px;align-items:center}.create input{flex:1;background:#f0f2f5;border:0;padding:10px 14px;border-radius:20px;outline:none}
+.btn{background:#0064e0;color:#fff;border:0;padding:8px 16px;border-radius:20px;font-weight:700}
+.post-top{display:flex;gap:10px;align-items:center;margin-bottom:8px}.ava{width:40px;height:40px;border-radius:50%;background:#0064e0;display:grid;place-items:center;color:#fff;font-weight:800}
+.post-img{width:100%;border-radius:10px;margin-top:8px;max-height:380px;object-fit:cover;background:#eee}
+.actions{display:flex;gap:6px;margin-top:10px}.actions button{flex:1;border:0;background:#f0f2f5;padding:8px;border-radius:8px;font-weight:600}.actions button.liked{background:#e7f3ff;color:#0064e0}
+.comments{margin-top:10px;border-top:1px solid #eee;padding-top:8px;font-size:14px}.cmt{display:flex;gap:6px;margin-top:6px}.cmt b{font-size:12px}
+textarea{width:100%;border:0;background:#f0f2f5;border-radius:12px;padding:10px;resize:none;outline:none;margin-top:8px}
+</style></head><body>
+<header><div class="logo">facet<span>.</span></div><div style="font-weight:600">Hi Didera 👋</div></header>
+<div class="feed">
+<div class="box"><div class="story-row" id="stories"></div></div>
+<div class="box"><div class="create"><div class="ava">D</div><input id="postText" placeholder="What's on your mind, Didera?"><button class="btn" onclick="addPost()">Post</button></div><input type="file" id="imgIn" accept="image/*" style="margin-top:8px"></div>
+<div id="posts"></div>
+</div>
+<script>
+let S=[{n:'Your story',l:'+'},{n:'Aisha',l:'AM'},{n:'Tunde',l:'TK'},{n:'Sarah',l:'SL'},{n:'Emeka',l:'EK'}];
+let P=JSON.parse(localStorage.getItem('facet_posts')||'[{"name":"Aisha • Lagos","text":"My new shop is open at Yaba! Come check am 🔥","img":"https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600","likes":12,"cmts":["Nice one!","Location pls?"]},{"name":"Tunde • Lekki","text":"Sunset for beach today was crazy 🌊","img":"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600","likes":24,"cmts":[]}]');
+function renderStories(){document.getElementById('stories').innerHTML=S.map(s=>`<div class="s"><div>${s.l}</div>${s.n}</div>`).join('')}
+function renderPosts(){
+document.getElementById('posts').innerHTML=P.map((p,i)=>`
+<div class="box"><div class="post-top"><div class="ava">${p.name[0]}</div><div><b>${p.name}</b><div style="font-size:11px;color:#65676b">now • 🌍</div></div></div>
+<div>${p.text}</div>${p.img?`<img class="post-img" src="${p.img}">`:''}
+<div class="actions"><button id="lk${i}" class="${p.liked?'liked':''}" onclick="like(${i})">👍 Like (${p.likes})</button><button onclick="focusC(${i})">💬 Comment (${p.cmts.length})</button><button onclick="share(${i})">↗️ Share</button></div>
+<div class="comments" id="c${i}">${p.cmts.map(c=>`<div class="cmt"><b>${c.split(':')[0]}:</b> ${c.split(':').slice(1).join(':')}</div>`).join('')}<div class="cmt"><input id="in${i}" placeholder="Write comment..." style="flex:1;background:#f0f2f5;border:0;padding:8px 12px;border-radius:20px;outline:none" onkeydown="if(event.key==='Enter')comment(${i})"></div></div></div>`).join('')
+}
+function addPost(){
+let t=document.getElementById('postText').value.trim(); if(!t)return;
+let f=document.getElementById('imgIn').files[0]; let url='';
+if(f){ url=URL.createObjectURL(f); }
+P.unshift({name:'Didera • You',text:t,img:url,likes:0,cmts:[],liked:false});
+localStorage.setItem('facet_posts',JSON.stringify(P)); document.getElementById('postText').value=''; document.getElementById('imgIn').value=''; renderPosts();
+}
+function like(i){ P[i].liked=!P[i].liked; P[i].likes+=P[i].liked?1:-1; localStorage.setItem('facet_posts',JSON.stringify(P)); renderPosts(); }
+function comment(i){ let v=document.getElementById('in'+i).value.trim(); if(!v)return; P[i].cmts.push('Didera: '+v); localStorage.setItem('facet_posts',JSON.stringify(P)); renderPosts(); }
+function focusC(i){ document.getElementById('in'+i).focus() }
+function share(i){ if(navigator.share){navigator.share({text:P[i].text})} else {alert('Link copied! https://obididera11-star.github.io/facet-social/')} }
+renderStories(); renderPosts();
+</script></body></html>
