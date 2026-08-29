@@ -1,48 +1,39 @@
-<!DOCTYPE html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>Facet - Real Social</title>
-<style>
-*{box-sizing:border-box;margin:0}body{font-family:-apple-system,system-ui;background:#f0f2f5;color:#050505}
-header{position:sticky;top:0;z-index:20;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:10px 14px;box-shadow:0 1px 2px #0002}
-.logo{font-weight:900;font-size:26px;color:#0064e0;letter-spacing:-1px}.logo span{color:#000}
-.feed{max-width:580px;margin:0 auto;padding:8px}
-.box{background:#fff;border-radius:12px;padding:12px;margin-bottom:10px;box-shadow:0 1px 2px #0001}
-.story-row{display:flex;gap:10px;overflow:auto;padding-bottom:4px}.s{flex:0 0 64px;text-align:center;font-size:11px}.s div{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#0064e0,#00c6ff);display:grid;place-items:center;color:#fff;font-weight:800;font-size:18px;border:3px solid #fff;box-shadow:0 0 0 3px #0064e0}
-.create{display:flex;gap:10px;align-items:center}.create input{flex:1;background:#f0f2f5;border:0;padding:10px 14px;border-radius:20px;outline:none}
-.btn{background:#0064e0;color:#fff;border:0;padding:8px 16px;border-radius:20px;font-weight:700}
-.post-top{display:flex;gap:10px;align-items:center;margin-bottom:8px}.ava{width:40px;height:40px;border-radius:50%;background:#0064e0;display:grid;place-items:center;color:#fff;font-weight:800}
-.post-img{width:100%;border-radius:10px;margin-top:8px;max-height:380px;object-fit:cover;background:#eee}
-.actions{display:flex;gap:6px;margin-top:10px}.actions button{flex:1;border:0;background:#f0f2f5;padding:8px;border-radius:8px;font-weight:600}.actions button.liked{background:#e7f3ff;color:#0064e0}
-.comments{margin-top:10px;border-top:1px solid #eee;padding-top:8px;font-size:14px}.cmt{display:flex;gap:6px;margin-top:6px}.cmt b{font-size:12px}
-textarea{width:100%;border:0;background:#f0f2f5;border-radius:12px;padding:10px;resize:none;outline:none;margin-top:8px}
-</style></head><body>
-<header><div class="logo">facet<span>.</span></div><div style="font-weight:600">Hi Didera 👋</div></header>
-<div class="feed">
-<div class="box"><div class="story-row" id="stories"></div></div>
-<div class="box"><div class="create"><div class="ava">D</div><input id="postText" placeholder="What's on your mind, Didera?"><button class="btn" onclick="addPost()">Post</button></div><input type="file" id="imgIn" accept="image/*" style="margin-top:8px"></div>
-<div id="posts"></div>
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Facet Lite</title><style>*{box-sizing:border-box;margin:0}body{font-family:system-ui;background:#000;color:#fff}header{display:flex;justify-content:space-between;padding:10px 12px;background:#000;position:sticky;top:0;z-index:20}.logo{color:#0866ff;font-weight:900;font-size:26px}.icons span{margin-left:14px;font-size:20px}.tabs{display:none}.tabs.on{display:block}.post{background:#1c1c1d;margin:8px 0;padding:10px}.post img{width:100%;border-radius:8px;margin-top:8px}.friend{display:flex;justify-content:space-between;align-items:center;padding:12px;border-bottom:1px solid #333}.friend button{padding:6px 14px;border-radius:6px;border:0;font-weight:700}.add{background:#0866ff;color:#fff}.rem{background:#333;color:#fff}.bottom{position:fixed;bottom:0;left:0;right:0;background:#1c1c1d;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #333}.bottom button{background:0;border:0;color:#aaa;font-size:22px}.bottom button.on{color:#0866ff}.market{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:6px}.item{background:#1c1c1d;border-radius:8px;overflow:hidden}.item img{width:100%;height:140px;object-fit:cover}.item div{padding:6px;font-size:13px}.menuOpt{background:#1c1c1d;margin:6px 10px;padding:14px;border-radius:10px;display:flex;justify-content:space-between}.modal{position:fixed;inset:0;background:#000e;display:none;place-items:center;z-index:99}.modal.show{display:grid}.mBox{background:#1c1c1d;width:90%;max-width:360px;border-radius:12px;padding:14px}.mBox input{width:100%;padding:10px;margin:6px 0;background:#333;border:0;border-radius:8px;color:#fff}</style></head><body>
+<header><div class="logo">facebook</div><div class="icons"><span>🔍</span><span>💬</span></div></header>
+
+<div id="home" class="tabs on">
+<div class="post"><div style="display:flex;gap:8px"><div style="width:36px;height:36px;border-radius:50%;background:#0866ff;display:grid;place-items:center">D</div><b>Didera • Lagos</b></div><div style="margin:8px 0">My new Facet Lite don ready! 🔥</div><img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=600"><div style="display:flex;justify-content:space-around;margin-top:8px;color:#aaa"><span>👍 23K</span><span>💬 890</span><span>↗️ 54</span></div></div>
+<div class="post"><b>Pets UK</b> • Trending alert<br><br>Your pups have been LOVING our jumbo hedgehog plush 🦔<br><img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=600"></div>
 </div>
+
+<div id="friends" class="tabs"><div style="padding:10px;font-weight:800;font-size:20px">Friends</div><div id="fList"></div></div>
+
+<div id="reels" class="tabs"><div style="padding:10px;font-weight:800">Reels</div><div class="post"><div style="position:relative"><img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600" style="height:500px;object-fit:cover"><div style="position:absolute;bottom:10px;left:10px">On the street of Lagos<br>All for Jarvis and Peller ❤️</div><div style="position:absolute;right:10px;bottom:80px;text-align:center">👍<br>12K<br><br>💬<br>13<br><br>↗️<br>15</div></div></div></div>
+
+<div id="market" class="tabs"><div style="padding:10px;font-weight:800">Marketplace • Miami • 20 mi</div><div class="market"><div class="item"><img src="https://images.unsplash.com/photo-1592899677977-9bb10ba128a5?w=400"><div>$129.90 • Apple iphone</div></div><div class="item"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400"><div>$10 • Youth soccer cle</div></div><div class="item"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400"><div>$25 • Big boys shoes</div></div><div class="item"><img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=400"><div>$50 • Bike for sale</div></div></div></div>
+
+<div id="notif" class="tabs"><div style="padding:10px;font-weight:800">Notifications</div><div class="post">You can see more listings like the one you viewed 2 days ago<br><small style="color:#aaa">8 hours ago</small></div><div class="post">Welcome to UK ONLY PETS FOR...<br><small>Aug 27 at 3:06 PM</small></div></div>
+
+<div id="menu" class="tabs"><div style="padding:10px;font-weight:800">Menu</div>
+<div class="menuOpt"><span>⚙️ Settings & privacy</span><span>▼</span></div>
+<div class="menuOpt"><span>🌙 Dark mode</span><span style="width:40px;height:22px;background:#0866ff;border-radius:20px;display:inline-block"></span></div>
+<div class="menuOpt"><span>🌐 Language</span></div>
+<div class="menuOpt"><span>📊 Data saver</span><span style="width:40px;height:22px;background:#333;border-radius:20px;display:inline-block"></span></div>
+<div class="menuOpt" onclick="openEdit()"><span>👤 Edit Profile - Didera</span><span>✏️</span></div>
+<div class="menuOpt"><span>🆘 Help & support</span></div>
+<div class="menuOpt" onclick="alert('Logged out!')"><span>🚪 Logout</span></div>
+</div>
+
+<div class="modal" id="editM"><div class="mBox"><h3>Edit Profile</h3><input id="en" placeholder="Name"><input id="ec" placeholder="City"><button onclick="saveP()" style="width:100%;padding:10px;margin-top:8px;background:#0866ff;border:0;border-radius:8px;color:#fff;font-weight:700">Save</button><button onclick="document.getElementById('editM').classList.remove('show')" style="width:100%;padding:10px;margin-top:6px;background:#333;border:0;border-radius:8px;color:#fff">Cancel</button></div></div>
+
+<div style="height:60px"></div>
+<div class="bottom"><button class="on" id="b1" onclick="sw('home',this)">🏠</button><button id="b2" onclick="sw('friends',this)">👥</button><button id="b3" onclick="sw('reels',this)">🎬</button><button id="b4" onclick="sw('market',this)">🏪</button><button id="b5" onclick="sw('notif',this)">🔔<span style="background:red;color:#fff;font-size:10px;padding:2px 5px;border-radius:10px;position:relative;top:-8px">1</span></button><button id="b6" onclick="sw('menu',this)">☰</button></div>
+
 <script>
-let S=[{n:'Your story',l:'+'},{n:'Aisha',l:'AM'},{n:'Tunde',l:'TK'},{n:'Sarah',l:'SL'},{n:'Emeka',l:'EK'}];
-let P=JSON.parse(localStorage.getItem('facet_posts')||'[{"name":"Aisha • Lagos","text":"My new shop is open at Yaba! Come check am 🔥","img":"https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600","likes":12,"cmts":["Nice one!","Location pls?"]},{"name":"Tunde • Lekki","text":"Sunset for beach today was crazy 🌊","img":"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600","likes":24,"cmts":[]}]');
-function renderStories(){document.getElementById('stories').innerHTML=S.map(s=>`<div class="s"><div>${s.l}</div>${s.n}</div>`).join('')}
-function renderPosts(){
-document.getElementById('posts').innerHTML=P.map((p,i)=>`
-<div class="box"><div class="post-top"><div class="ava">${p.name[0]}</div><div><b>${p.name}</b><div style="font-size:11px;color:#65676b">now • 🌍</div></div></div>
-<div>${p.text}</div>${p.img?`<img class="post-img" src="${p.img}">`:''}
-<div class="actions"><button id="lk${i}" class="${p.liked?'liked':''}" onclick="like(${i})">👍 Like (${p.likes})</button><button onclick="focusC(${i})">💬 Comment (${p.cmts.length})</button><button onclick="share(${i})">↗️ Share</button></div>
-<div class="comments" id="c${i}">${p.cmts.map(c=>`<div class="cmt"><b>${c.split(':')[0]}:</b> ${c.split(':').slice(1).join(':')}</div>`).join('')}<div class="cmt"><input id="in${i}" placeholder="Write comment..." style="flex:1;background:#f0f2f5;border:0;padding:8px 12px;border-radius:20px;outline:none" onkeydown="if(event.key==='Enter')comment(${i})"></div></div></div>`).join('')
-}
-function addPost(){
-let t=document.getElementById('postText').value.trim(); if(!t)return;
-let f=document.getElementById('imgIn').files[0]; let url='';
-if(f){ url=URL.createObjectURL(f); }
-P.unshift({name:'Didera • You',text:t,img:url,likes:0,cmts:[],liked:false});
-localStorage.setItem('facet_posts',JSON.stringify(P)); document.getElementById('postText').value=''; document.getElementById('imgIn').value=''; renderPosts();
-}
-function like(i){ P[i].liked=!P[i].liked; P[i].likes+=P[i].liked?1:-1; localStorage.setItem('facet_posts',JSON.stringify(P)); renderPosts(); }
-function comment(i){ let v=document.getElementById('in'+i).value.trim(); if(!v)return; P[i].cmts.push('Didera: '+v); localStorage.setItem('facet_posts',JSON.stringify(P)); renderPosts(); }
-function focusC(i){ document.getElementById('in'+i).focus() }
-function share(i){ if(navigator.share){navigator.share({text:P[i].text})} else {alert('Link copied! https://obididera11-star.github.io/facet-social/')} }
-renderStories(); renderPosts();
+let friends=["BigMama Sanders","Tim Pugh","Jennifer Herrick","Michelle Russ","Nancee Caldwell","Jacklyn Jones"];
+function renderF(){document.getElementById('fList').innerHTML=friends.map(n=>`<div class="friend"><div style="display:flex;gap:10px;align-items:center"><div style="width:40px;height:40px;border-radius:50%;background:#333;display:grid;place-items:center">${n[0]}</div>${n}</div><div><button class="add">Add friend</button> <button class="rem">Remove</button></div></div>`).join('');}
+function sw(id,btn){document.querySelectorAll('.tabs').forEach(t=>t.classList.remove('on'));document.getElementById(id).classList.add('on');document.querySelectorAll('.bottom button').forEach(b=>b.classList.remove('on'));btn.classList.add('on');}
+function openEdit(){document.getElementById('editM').classList.add('show');}
+function saveP(){alert('Profile saved for '+document.getElementById('en').value);document.getElementById('editM').classList.remove('show');}
+renderF();
 </script></body></html>
